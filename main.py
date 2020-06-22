@@ -2,12 +2,17 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from db.mongodb_utils import close_mongo_connection, connect_to_mongo
 from pydantic import BaseModel
+from db.mongodb import AsyncIOMotorClient, get_database
 
 class Item(BaseModel):
     name: str
     description: str = None
     price: float
     tax: float = None
+
+class Event(BaseModel):
+    user_id: str
+    account_id: str
 
 app = FastAPI()
 
@@ -28,7 +33,20 @@ app.add_event_handler("shutdown", close_mongo_connection)
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Hello Prey"}
+
+
+@app.get("/events")
+async def index():
+    return [{"event": 1}]
+
+
+@app.post("/events")
+async def create():
+    client = await get_database()
+    result = await client.test.events.insert_one({"event": 1000})
+    return {"message": "success"}
+
 
 @app.post("/items/")
 async def create_item(item: Item):
