@@ -33,7 +33,7 @@ app.add_event_handler("shutdown", close_mongo_connection)
 
 @app.get("/")
 async def root():
-    return {"message": "Hello Prey"}
+    return {"message": "Hello World"}
 
 
 @app.get("/events")
