@@ -4,8 +4,8 @@ db.createUser(
     pwd: "preymongo123456",
     roles: [
       {
-        role: "admin",
-        db: "test"
+        role: "readWrite",
+        db: "local"
       }
     ]
   }
