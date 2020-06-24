@@ -1,11 +1,11 @@
 db.createUser(
   {
-    user: "preymongo",
-    pwd: "preymongo123456",
+    user: "mongo",
+    pwd: "111111",
     roles: [
       {
         role: "readWrite",
-        db: "local"
+        db: "test"
       }
     ]
   }
