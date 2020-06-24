@@ -7,6 +7,7 @@ from .mongodb import db
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
+# MONGODB_URL = "mongodb://db:27017/test"
 MONGODB_URL = "mongodb://localhost:27017/test"
 
 async def connect_to_mongo():

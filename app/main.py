@@ -22,7 +22,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[""],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -38,13 +38,15 @@ async def root():
 
 @app.get("/events")
 async def index():
-    return [{"event": 1}]
+    client = await get_database()
+    result = client.test.events.find({})
+    return result
 
 
 @app.post("/events")
 async def create():
     client = await get_database()
-    result = await client.test.events.insert_one({"event": 1000})
+    result = await client.test.events.insert_one({"event": 2000})
     return {"message": "success"}
 
 
