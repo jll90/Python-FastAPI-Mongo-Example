@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-from db.mongodb_utils import close_mongo_connection, connect_to_mongo
+from .db.mongodb_utils import close_mongo_connection, connect_to_mongo
 from pydantic import BaseModel
-from db.mongodb import AsyncIOMotorClient, get_database
+from .db.mongodb import AsyncIOMotorClient, get_database
 
 class Item(BaseModel):
     name: str
